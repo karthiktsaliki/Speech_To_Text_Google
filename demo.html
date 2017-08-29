@@ -1,0 +1,50 @@
+ <head>
+ <script src="https://speech.mroads.com/socket.io/socket.io.js"></script>
+ <script src="https://speech.mroads.com/recorder"></script>
+ <script src="https://speech.mroads.com/speech-to-text"></script>
+<style>
+ #start{
+  background:green; 
+  width:100px;
+  height:30px;
+  border-radius:2px;
+ }
+#stop{
+  background:red; 
+  width:100px;
+  height:30px;
+  border-radius:2px;
+ }
+</style>
+ </head>
+ <body>
+        <p>What is JDK and JRE</p>
+	<input id="start" type="button" value="start" onclick="start()">
+	<input id="stop"type="button" value="stop" onclick="stop()">
+	<p id="convertedText"></p>
+	<p id="score"></p>
+ </body>
+<script>
+var speechToTextRequest={
+   interviewId:0,
+   questionId:6
+}
+function start(){
+   navigator.getUserMedia({audio:true,video:false},function(audioStream){
+   initSpeechToText(audioStream);
+   setSpeechToText(true);
+   startSpeechToText(speechToTextRequest);
+  },function(err){
+    console.error(er);
+  })
+}
+function stop(){
+ try{
+       setSpeechToText(false);
+       stopSpeechToText(speechToTextRequest);
+ }catch(error){
+	console.error(" error in stopSpeechToText ");
+	console.error(error);
+ }
+}
+</script>
